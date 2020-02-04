@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 python-dateutil = "*"
-pyxb = "*"
+generateds = "*"
 
 [requires]
 python_version = "3.8"

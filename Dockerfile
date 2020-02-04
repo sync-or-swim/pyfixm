@@ -2,7 +2,9 @@ FROM alpine AS journaler
 
 RUN apk add --no-cache \
         python3-dev \
-        wget ca-certificates && \
+        wget ca-certificates \
+        # For generateDS
+        gcc libxslt-dev libxml2 libc-dev && \
     pip3 install --upgrade pip
 
 WORKDIR /xsd
@@ -22,17 +24,10 @@ RUN pip3 install pipenv && \
     pipenv install --deploy --system --ignore-pipfile
 
 COPY . .
-RUN mkdir /pyswim/ && \
-#    pyxbgen -m fixm_schema \
-#        --schema-location /xsd/base_schema.xsd \
-#        --schema-root /xsd/ \
-#        --binding-root /pyswim/
-    pyxbgen -m fixm_schema \
-        --schema-location /xsd/schemas/core/Fixm.xsd \
-        --schema-location /xsd/schemas/extensions/nas/Nas.xsd \
-        --schema-root /xsd/ \
-        --binding-root /pyswim/
-
 WORKDIR /pyswim
-RUN touch __init__.py
-#RUN python3 /src/test_schema.py
+
+RUN python3 /usr/bin/generateDS.py \
+    -o pyswim.py \
+    -s pyswim_subs.py \
+#    /xsd/base_schema.xsd
+    /xsd/schemas/core/Fixm.xsd
