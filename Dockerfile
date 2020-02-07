@@ -15,19 +15,13 @@ RUN update-ca-certificates && \
     unzip ext_schema.zip && \
     rm core_schema.zip && \
     rm ext_schema.zip
-COPY base_schema.xsd .
+COPY resources/base_schema.xsd .
 
 WORKDIR /src/
-COPY Pipfile .
-COPY Pipfile.lock .
-RUN pip3 install pipenv && \
-    pipenv install --deploy --system --ignore-pipfile
+RUN pip3 install generateDS
 
-COPY . .
-WORKDIR /pyswim
-
-RUN python3 /usr/bin/generateDS.py \
-    -o pyswim.py \
-    -s pyswim_subs.py \
-#    /xsd/base_schema.xsd
-    /xsd/schemas/core/Fixm.xsd
+WORKDIR /pyfixm
+RUN generateDS \
+    -o /pyfixm/pyfixm.py \
+    -s /pyfixm/pyfixm_subs.py \
+    ../xsd/base_schema.xsd
