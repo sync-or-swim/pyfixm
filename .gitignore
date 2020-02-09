@@ -1,2 +1,6 @@
+# Build stuff
+/*.egg-info
+/dist
+
 # Library built in docker and exported to host computer for development
 /pyfixm

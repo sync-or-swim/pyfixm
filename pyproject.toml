@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pyfixm"
+version = "0.1.0"
+description = "Parses FIXM data into Python datastructures"
+authors = ["ignormies <bryce.beagle@gmail.com>"]
+license = "BSD-3-Clause"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+]
+include = [
+    "pyfixm/LICENSE",
+    "pyfixm/*.py",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+six = "^1.14.0"
+
+[tool.poetry.dev-dependencies]
+docker = "^4.2.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

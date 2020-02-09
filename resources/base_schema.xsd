@@ -2,8 +2,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import
     namespace="http://www.fixm.aero/fixm/3.0"
-    schemaLocation="schemas/core/Fixm.xsd"/>
+    schemaLocation="./schemas/core/Fixm.xsd"/>
   <xs:import
     namespace="http://www.faa.aero/nas/3.0"
-    schemaLocation="schemas/extensions/nas/Nas.xsd"/>
+    schemaLocation="./schemas/extensions/nas/Nas.xsd"/>
 </xs:schema>
