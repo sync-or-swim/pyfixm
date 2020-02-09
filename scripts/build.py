@@ -2,6 +2,7 @@ import io
 import logging
 import os
 import re
+import shutil
 import tarfile
 from pathlib import Path
 from typing import Generator
@@ -67,15 +68,16 @@ def extract_files(docker_client: DockerClient, image: Image):
     tar_file_object = io.BytesIO(package_tar_bytes)
     package_tar = tarfile.open(fileobj=tar_file_object)
 
+    # Directory that will contain the output files
+    pyfixm_output_path = Path('pyfixm/')
+    shutil.rmtree(pyfixm_output_path, ignore_errors=True)
+    pyfixm_output_path.mkdir(parents=True)
+
     # Extract the files from the tarfile to the disk
     for tar_file_info in package_tar.getmembers():
         # Ignore directories
         if not tar_file_info.isfile():
             continue
-
-        # Directory that will contain the output files
-        pyfixm_output_path = Path('pyfixm/')
-        pyfixm_output_path.mkdir(parents=True, exist_ok=True)
 
         # Filename (without outer directory)
         tar_file_info.name = Path(tar_file_info.name).name
