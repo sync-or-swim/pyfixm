@@ -17,7 +17,8 @@ Building pyfixm manually
 To build ``pyfixm`` either use the suppled ``build-pyfixm`` PyCharm run
 configuration or by manually running ``scripts/build.py``. Both methods build
 the library within a Docker image and then extract the built library to
-``./pyfixm`` on the host computer.
+``./pyfixm`` on the host computer. Reminder to install Docker if you haven't
+already.
 
 License
 =======
