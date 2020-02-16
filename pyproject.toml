@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyfixm"
-version = "0.1.1"
+version = "0.1.2"
 description = "Parses FIXM data into Python datastructures"
 authors = ["Bryce Beagle"]
 maintainers = ["Tyler Compton"]
@@ -23,6 +23,7 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.6"
 six = "^1.14.0"
+lxml = "^4.5.0"
 
 [tool.poetry.dev-dependencies]
 docker = "^4.2.0"
