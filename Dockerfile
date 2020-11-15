@@ -1,11 +1,11 @@
 FROM alpine AS journaler
 
 RUN apk add --no-cache \
-        python3-dev \
+        python3-dev py3-pip \
         wget ca-certificates \
         # For generateDS
         gcc libxslt-dev libxml2 libc-dev && \
-    pip3 install --upgrade pip generateDS
+    pip install --upgrade pip generateDS==2.36.5
 
 WORKDIR /xsd/
 RUN update-ca-certificates && \
